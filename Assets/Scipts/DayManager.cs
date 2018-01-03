@@ -15,13 +15,13 @@ public class DayManager : MonoBehaviour
 
     [Header("Timer")]
     public Text TimerText;
-    private float timer;
-    private string minutes;
-    private string seconds;
+    private float _timer;
+    private string _minutes;
+    private string _seconds;
 
     // Debugging purposes
     [Header("Debugging text")]
-    private int increaseRate;
+    private int _increaseRate;
     public Text RateText;
 
     // This is called before Start()
@@ -41,8 +41,8 @@ public class DayManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        timer = Time.time;
-        increaseRate = 1;
+        _timer = Time.time;
+        _increaseRate = 1;
     }
 
     // Update is called once per frame
@@ -54,20 +54,20 @@ public class DayManager : MonoBehaviour
 
     public void Timer()
     {
-        float t = (Time.time + timer) * increaseRate;
+        float t = (Time.time + _timer) * _increaseRate;
 
         if (Input.GetKeyDown(KeyCode.T))
         {
-            increaseRate *= 2;
+            _increaseRate *= 2;
         }
         //Debug.Log(increaseRate);
 
-        minutes = ((int)t / 60).ToString();
-        seconds = (t % 60).ToString("f0");
+        _minutes = ((int)t / 60).ToString();
+        _seconds = (t % 60).ToString("f0");
 
-        TimerText.text = minutes + "mins " + seconds + "sec";
+        TimerText.text = _minutes + "mins " + _seconds + "sec";
 
-        RateText.text = "Rate: " + increaseRate;
+        RateText.text = "Rate: " + _increaseRate;
     }
 
     public void DayCounts()
@@ -115,7 +115,7 @@ public class DayManager : MonoBehaviour
 
 
         //Debug.Log("DAY" + (int.Parse(minutes) / 3));
-        Day = ((int.Parse(minutes) / 3) + 1);
+        Day = ((int.Parse(_minutes) / 3) + 1);
         DayCounter.text = "DAY " + Day;
 
     }

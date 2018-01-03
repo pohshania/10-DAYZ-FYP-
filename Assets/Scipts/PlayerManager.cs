@@ -135,15 +135,22 @@ public class PlayerManager : MonoBehaviour {
             _playerAnim.SetBool("Melee", false);
             // Debug.Log("ATTTTTTTTACK finish");
         }
-        else
+        else if(_playerAnim.GetBool("Melee") == false && isGrounded == true)
         {
             MeleeAttackPos.SetActive(false);  // toggle off melee attack
+            _playerAnim.SetBool("JumpMelee", false);
         }
 
-        if (Input.GetButtonDown("Fire1"))  //if(Input.GetKeyDown(KeyCode.X))
+        // melee attack when standing still
+        if (Input.GetButtonDown("Fire1") && playerMoveVelocity == 0 && isGrounded == true)  //if(Input.GetKeyDown(KeyCode.X))
         {
             _playerAnim.SetBool("Melee", true);
-            MeleeAttackPos.SetActive(true);  // toggle on melee attack
+            MeleeAttackPos.SetActive(true);  // toggle on melee attack pos
+        }
+        else if(Input.GetButtonDown("Fire1") && isGrounded == false) // jump melee attack animation
+        {
+            _playerAnim.SetBool("JumpMelee", true);
+            MeleeAttackPos.SetActive(true);  // toggle on melee attack pos
         }
     }
 
