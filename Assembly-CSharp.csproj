@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scipts\CharacterSelectManager.cs" />
+     <Compile Include="Assets\Scipts\CheckGround.cs" />
      <Compile Include="Assets\Scipts\ComponentsManager.cs" />
      <Compile Include="Assets\Scipts\DayManager.cs" />
      <Compile Include="Assets\Scipts\EnemyManager.cs" />
