@@ -1,10 +1,11 @@
 fileFormatVersion: 2
 guid: b5cc10ab7b0e2584bb4a7c2c62c31ef6
-timeCreated: 1511503554
+timeCreated: 1515172089
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: veins_0
+    21300002: veins_1
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -87,7 +88,20 @@ TextureImporter:
         width: 43
         height: 34
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: veins_1
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 339
+        width: 39
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

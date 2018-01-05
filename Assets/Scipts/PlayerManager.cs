@@ -26,6 +26,8 @@ public class PlayerManager : MonoBehaviour {
     private float _scaleY;
     private float _scaleZ;
 
+
+    [Header("Ground Check")]
     // player jump to check on ground
     public Transform GroundCheck;
     public LayerMask WhatIsGround;
@@ -38,7 +40,6 @@ public class PlayerManager : MonoBehaviour {
 
     // sprite animation
     private Animator _playerAnim;
-
 
     // This is called before Start()
     private void Awake()
