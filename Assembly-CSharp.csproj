@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scipts\Components\ComponentsManager.cs" />
      <Compile Include="Assets\Scipts\Components\DayManager.cs" />
      <Compile Include="Assets\Scipts\Enemy\EnemyAttackState.cs" />
+     <Compile Include="Assets\Scipts\Enemy\EnemyChaseState.cs" />
      <Compile Include="Assets\Scipts\Enemy\EnemyDeathState.cs" />
      <Compile Include="Assets\Scipts\Enemy\EnemyIdleState.cs" />
      <Compile Include="Assets\Scipts\Enemy\EnemyManager.cs" />

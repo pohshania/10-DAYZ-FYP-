@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class EnemyIdleState : EnemyStates
 {
+    // enemy
     private EnemyManager theEnemy;
-
-    private float _idleTimer; // contain the time enemy idle
-    private float _idleDuration = 10f; // time stay in idle    
+    
+    // timer
+    private float _idleTimer; 
+    private float _idleDuration = 5f;   
 
     public void Enter(EnemyManager enemy)
     {
@@ -20,10 +22,10 @@ public class EnemyIdleState : EnemyStates
         Debug.Log("Enemy Idling");
         Idle();
 
-        // if spotted player 
+        // if enemy spotted player 
         if(theEnemy.Target != null)
         {
-            theEnemy.ChangeState(new EnemyPatrolState());
+            theEnemy.ChangeState(new EnemyChaseState());
         }
     }
 
@@ -44,11 +46,12 @@ public class EnemyIdleState : EnemyStates
 
     private void Idle()
     {
-        // set to idle animation
+        // set enemy to idle animation
         theEnemy.enemyAnim.SetFloat("speed", 0);
 
+        // start timer
         _idleTimer += Time.deltaTime;
-
+        // after 5 sec of Idling change state to Patrol
         if(_idleTimer >= _idleDuration)
         {
             theEnemy.ChangeState(new EnemyPatrolState());
