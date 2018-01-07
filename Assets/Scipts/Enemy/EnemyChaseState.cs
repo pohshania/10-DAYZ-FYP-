@@ -8,8 +8,6 @@ public class EnemyChaseState : EnemyStates
     // enemy
     private EnemyManager theEnemy;
 
-    public bool ChasedTilEdge;
-
     public void Enter(EnemyManager enemy)
     {
         this.theEnemy = enemy;
@@ -18,12 +16,15 @@ public class EnemyChaseState : EnemyStates
     public void Execute()
     {
         Debug.Log("Enemy Chasing");
-        Chase();
+        //Chase();
 
         // if enemy spotted player 
         if (theEnemy.Target != null)
         {
-            //theEnemy.ChangeState(new EnemyChaseState());
+            // enemy move
+            theEnemy.EnemyMove();
+
+            Chase();
         }
         else // when player go out of enemy range
         {
@@ -49,10 +50,15 @@ public class EnemyChaseState : EnemyStates
 
     private void Chase()
     {
-        // enemy move
-        theEnemy.EnemyMove();
-
         // set to patrol animation to enemy speed
         theEnemy.enemyAnim.SetFloat("speed", theEnemy.MoveSpeed);
+
+        float DirX = theEnemy.Target.transform.position.x - theEnemy.transform.position.x;
+
+        if(DirX < 5f)
+        {
+            Debug.Log("PLAYER IN ATTACK RANGE");
+            theEnemy.ChangeState(new EnemyAttackState());
+        }
     }
 }

@@ -6,26 +6,29 @@ using UnityEngine;
 public class EnemyAttackState : EnemyStates
 {
     private EnemyManager theEnemy;
-    private float _scaleX;
-    private float _scaleY;
 
     public void Enter(EnemyManager enemy)
     {
         this.theEnemy = enemy;
 
-        _scaleX = theEnemy.transform.localScale.x;
-        _scaleY = theEnemy.transform.localScale.y;
     }
 
     public void Execute()
     {
         Debug.Log("Enemy Attacking");
 
-        // if player go out of range
-        if (theEnemy.Target == null) 
+        // if player in enemy range
+        if (theEnemy.Target != null) 
         {
+            Attack();
+        }
+        else
+        {
+            // set to attack animation bool to false
+            theEnemy.enemyAnim.SetBool("attack", false);
             theEnemy.ChangeState(new EnemyIdleState());
         }
+
 
     }
 
@@ -44,4 +47,9 @@ public class EnemyAttackState : EnemyStates
         
     }
 
+    private void Attack()
+    {
+        // set to attack animation bool to true
+        theEnemy.enemyAnim.SetBool("attack", true);
+    }
 }
