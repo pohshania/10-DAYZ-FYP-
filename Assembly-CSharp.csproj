@@ -5,8 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{0050E33B-735E-6A46-FDC5-5D7CF47D7465}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -47,36 +46,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scipts\Components\ComponentsManager.cs" />
-    <Compile Include="Assets\Scipts\Components\DayManager.cs" />
-    <Compile Include="Assets\Scipts\Enemy\EnemyAttackState.cs" />
-    <Compile Include="Assets\Scipts\Enemy\EnemyDeathState.cs" />
-    <Compile Include="Assets\Scipts\Enemy\EnemyIdleState.cs" />
-    <Compile Include="Assets\Scipts\Enemy\EnemyManager.cs" />
-    <Compile Include="Assets\Scipts\Enemy\EnemyPatrolState.cs" />
-    <Compile Include="Assets\Scipts\Enemy\EnemyStates.cs" />
-    <Compile Include="Assets\Scipts\Mine\MineManager.cs" />
-    <Compile Include="Assets\Scipts\Player\CharacterSelectManager.cs" />
-    <Compile Include="Assets\Scipts\Player\PlayerManager.cs" />
-    <Compile Include="Assets\Scipts\Test.cs" />
-    <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.PlaymodeTestsRunner">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Analytics">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.HoloLens">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.VR">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
-    </Reference>
+     <Compile Include="Assets\Scipts\Components\ComponentsManager.cs" />
+     <Compile Include="Assets\Scipts\Components\DayManager.cs" />
+     <Compile Include="Assets\Scipts\Enemy\EnemyAttackState.cs" />
+     <Compile Include="Assets\Scipts\Enemy\EnemyDeathState.cs" />
+     <Compile Include="Assets\Scipts\Enemy\EnemyIdleState.cs" />
+     <Compile Include="Assets\Scipts\Enemy\EnemyManager.cs" />
+     <Compile Include="Assets\Scipts\Enemy\EnemyPatrolState.cs" />
+     <Compile Include="Assets\Scipts\Enemy\EnemyRange.cs" />
+     <Compile Include="Assets\Scipts\Enemy\EnemyStates.cs" />
+     <Compile Include="Assets\Scipts\Mine\MineManager.cs" />
+     <Compile Include="Assets\Scipts\Player\CharacterSelectManager.cs" />
+     <Compile Include="Assets\Scipts\Player\PlayerManager.cs" />
+     <Compile Include="Assets\Scipts\Test.cs" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.PlaymodeTestsRunner">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.HoloLens">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.VR">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -86,4 +86,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  
 </Project>

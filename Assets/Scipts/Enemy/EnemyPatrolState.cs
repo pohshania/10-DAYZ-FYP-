@@ -17,10 +17,15 @@ public class EnemyPatrolState : EnemyStates
 
     public void Execute()
     {
-        Debug.Log("Enemy is patroling");
+        Debug.Log("Enemy Patroling");
         Patrol();
 
         theEnemy.EnemyMove();
+
+        if(theEnemy.Target != null)
+        {
+            theEnemy.ChangeState(new EnemyAttackState());
+        }
     }
 
     public void Exit()

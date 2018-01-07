@@ -8,7 +8,7 @@ public class EnemyIdleState : EnemyStates
     private EnemyManager theEnemy;
 
     private float _idleTimer; // contain the time enemy idle
-    private float _idleDuration = 5f; // time stay in idle    
+    private float _idleDuration = 10f; // time stay in idle    
 
     public void Enter(EnemyManager enemy)
     {
@@ -19,6 +19,12 @@ public class EnemyIdleState : EnemyStates
     {
         Debug.Log("Enemy Idling");
         Idle();
+
+        // if spotted player 
+        if(theEnemy.Target != null)
+        {
+            theEnemy.ChangeState(new EnemyPatrolState());
+        }
     }
 
     public void Exit()

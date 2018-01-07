@@ -37,6 +37,8 @@ public class EnemyManager : MonoBehaviour
     // Enemy state
     private EnemyStates _currState;
 
+    public GameObject Target { get; set; }
+
     // Use this for initialization
     void Start ()
     {
@@ -57,7 +59,30 @@ public class EnemyManager : MonoBehaviour
     void Update()
     {
         _currState.Execute();
+
+        LookAtPlayer();
 	}
+
+    private void LookAtPlayer()
+    {
+        if (Target != null)
+        {
+            Debug.Log("LOOK AT PLAYER!");
+            // find the direction the player is at
+            float DirX = Target.transform.position.x - transform.position.x;
+
+            if (DirX < 0)
+            {
+                Debug.Log("player on left side");
+                movingRight = false;
+            }
+            else if(DirX > 0)
+            {
+                Debug.Log("player on right side");
+                movingRight = true;
+            }
+        }
+    }
 
     public void ChangeState(EnemyStates newState)
     {
