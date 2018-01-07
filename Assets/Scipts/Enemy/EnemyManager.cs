@@ -50,7 +50,7 @@ public class EnemyManager : MonoBehaviour
         // enemy start with idle state
         ChangeState(new EnemyIdleState());
 
-        // store player's x and y scale 
+        // store enemy's x and y scale 
         _scaleX = transform.localScale.x;
         _scaleY = transform.localScale.y;
     }
@@ -63,7 +63,7 @@ public class EnemyManager : MonoBehaviour
         LookAtPlayer();
 	}
 
-    private void LookAtPlayer()
+    public void LookAtPlayer()
     {
         if (Target != null)
         {

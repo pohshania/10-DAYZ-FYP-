@@ -6,30 +6,27 @@ using UnityEngine;
 public class EnemyAttackState : EnemyStates
 {
     private EnemyManager theEnemy;
-
-    private float _attackTimer = 3f;
-    private float _attackCD;
-    private bool canAttack;
+    private float _scaleX;
+    private float _scaleY;
 
     public void Enter(EnemyManager enemy)
     {
         this.theEnemy = enemy;
+
+        _scaleX = theEnemy.transform.localScale.x;
+        _scaleY = theEnemy.transform.localScale.y;
     }
 
     public void Execute()
     {
         Debug.Log("Enemy Attacking");
-        //EnemyAttack();
 
-       // if the enemy has a target, spotted player
-       if(theEnemy.Target != null)
-        {
-            theEnemy.EnemyMove();
-        }
-        else
+        // if player go out of range
+        if (theEnemy.Target == null) 
         {
             theEnemy.ChangeState(new EnemyIdleState());
         }
+
     }
 
     public void Exit()
@@ -47,20 +44,4 @@ public class EnemyAttackState : EnemyStates
         
     }
 
-    private void EnemyAttack()
-    {
-        _attackTimer += Time.deltaTime;
-
-        if(_attackTimer >= _attackCD)
-        {
-            canAttack = true;
-            _attackTimer = 0f;
-        }
-
-        if(canAttack)
-        {
-            canAttack = !canAttack;
-            theEnemy.enemyAnim.SetTrigger("throw");
-        }
-    }
 }

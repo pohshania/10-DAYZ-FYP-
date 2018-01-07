@@ -8,6 +8,8 @@ public class EnemyChaseState : EnemyStates
     // enemy
     private EnemyManager theEnemy;
 
+    public bool ChasedTilEdge;
+
     public void Enter(EnemyManager enemy)
     {
         this.theEnemy = enemy;
@@ -21,7 +23,7 @@ public class EnemyChaseState : EnemyStates
         // if enemy spotted player 
         if (theEnemy.Target != null)
         {
-            theEnemy.ChangeState(new EnemyChaseState());
+            //theEnemy.ChangeState(new EnemyChaseState());
         }
         else // when player go out of enemy range
         {
