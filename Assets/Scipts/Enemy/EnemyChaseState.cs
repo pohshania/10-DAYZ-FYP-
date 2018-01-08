@@ -25,6 +25,14 @@ public class EnemyChaseState : EnemyStates
             theEnemy.EnemyMove();
 
             Chase();
+
+            // check if the player is at edge
+            if (theEnemy.atWall == true || theEnemy.notAtEdge == false)
+            {
+                // ignore player and continue to patrol
+                theEnemy.Target = null;
+                theEnemy.ChangeState(new EnemyPatrolState());
+            }
         }
         else // when player go out of enemy range
         {
