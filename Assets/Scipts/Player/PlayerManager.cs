@@ -110,8 +110,9 @@ public class PlayerManager : MonoBehaviour {
         PlayerJump();
         // player melee attacking
         PlayerMelee();
+
         // player die
-        PlayerDead();
+        //PlayerDead();
 
         // Debugging
         AddHealth();
@@ -206,4 +207,17 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
+    // Getters
+    public int GetPlayerCurrHealth()
+    {
+        return PlayerCurrHealth;
+    }
+    public int GetPlayerCurrHunger()
+    {
+        return PlayerCurrHunger;
+    }
+    public int GetPlayerCurrThirst()
+    {
+        return PlayerCurrThirst;
+    }
 }

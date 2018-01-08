@@ -38,6 +38,9 @@ public class EnemyManager : MonoBehaviour
     private float _scaleX;
     private float _scaleY;
 
+    [HideInInspector]
+    public bool IsDead;
+
     // Enemy state
     private EnemyStates _currState;
 
@@ -57,6 +60,8 @@ public class EnemyManager : MonoBehaviour
         // store enemy's x and y scale 
         _scaleX = transform.localScale.x;
         _scaleY = transform.localScale.y;
+
+        IsDead = false;
     }
 
     // Update is called once per frame
@@ -67,6 +72,8 @@ public class EnemyManager : MonoBehaviour
         _currState.Execute();
 
         LookAtPlayer();
+
+        EnemyDeath();
 	}
 
     public void LookAtPlayer()
@@ -133,6 +140,18 @@ public class EnemyManager : MonoBehaviour
         Instantiate(EnemyProjectileGO, EnemyFirePoint.position, EnemyFirePoint.rotation);
     }
 
+    public void EnemyDeath()
+    {
+        // after 2 sec in Death state, destroy enemy
+        if (IsDead == true)
+        {
+            Destroy(gameObject);
+
+            Debug.Log("DESTROY THE ENEMY LAAAAA");
+
+        }
+    }
+
     void SetHealthBar(float health)
     {
         EnemyHealthBar.transform.localScale = new Vector3(Mathf.Clamp(health, 0f, 1f), EnemyHealthBar.transform.localScale.y, EnemyHealthBar.transform.localScale.z);
@@ -150,7 +169,8 @@ public class EnemyManager : MonoBehaviour
 
             if (EnemyCurrHealth <= 0)
             {
-                Destroy(gameObject);
+                // ENEMY DIE LIAO THEN KENNA DESTROYED HERE
+                ChangeState(new EnemyDeathState());
             }
         }
     }

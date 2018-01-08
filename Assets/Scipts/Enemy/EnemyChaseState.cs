@@ -59,7 +59,7 @@ public class EnemyChaseState : EnemyStates
     private void Chase()
     {
         // set to patrol animation to enemy speed
-        theEnemy.enemyAnim.SetFloat("speed", theEnemy.MoveSpeed);
+        theEnemy.enemyAnim.SetFloat("Speed", theEnemy.MoveSpeed);
 
         float DirX = theEnemy.Target.transform.position.x - theEnemy.transform.position.x;
 

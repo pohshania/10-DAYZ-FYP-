@@ -30,7 +30,7 @@ public class EnemyAttackState : EnemyStates
         else
         {
             // set to attack animation bool to false
-            theEnemy.enemyAnim.SetBool("attack", false);
+            theEnemy.enemyAnim.SetBool("Attack", false);
             theEnemy.ChangeState(new EnemyIdleState());
         }
 
@@ -55,7 +55,7 @@ public class EnemyAttackState : EnemyStates
     private void Attack()
     {
         // set to attack animation bool to true
-        theEnemy.enemyAnim.SetBool("attack", true);
+        theEnemy.enemyAnim.SetBool("Attack", true);
 
         // start timer
         _attackCD -= Time.deltaTime;

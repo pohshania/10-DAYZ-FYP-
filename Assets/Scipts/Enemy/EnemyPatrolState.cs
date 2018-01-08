@@ -49,7 +49,7 @@ public class EnemyPatrolState : EnemyStates
         theEnemy.EnemyMove();
 
         // set to patrol animation to enemy speed
-        theEnemy.enemyAnim.SetFloat("speed", theEnemy.MoveSpeed);
+        theEnemy.enemyAnim.SetFloat("Speed", theEnemy.MoveSpeed);
 
         _patrolTimer += Time.deltaTime;
 

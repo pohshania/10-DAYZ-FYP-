@@ -47,7 +47,7 @@ public class EnemyIdleState : EnemyStates
     private void Idle()
     {
         // set enemy to idle animation
-        theEnemy.enemyAnim.SetFloat("speed", 0);
+        theEnemy.enemyAnim.SetFloat("Speed", 0);
 
         // start timer
         _idleTimer += Time.deltaTime;

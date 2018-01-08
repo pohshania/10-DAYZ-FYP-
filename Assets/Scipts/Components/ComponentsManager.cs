@@ -13,7 +13,7 @@ public class ComponentsManager : MonoBehaviour
 
     private int _decreaseRate = 5;
 
-    private float _rateTimer = 5f;
+    private float _rateTimer = 10f;
     private float _rateCD;
 
     private DayManager theDay;
@@ -21,6 +21,15 @@ public class ComponentsManager : MonoBehaviour
     // Debugging
     [Header("Decrease rate")]
     public Text DecreaseRateText;
+    [Header("CD timer")]
+    public Text CDRateTimerText;
+    [Header("Health")]
+    public Text HealthText;
+    [Header("Hunger")]
+    public Text HungerText;
+    [Header("Thirst")]
+    public Text ThirstText;
+
 
     // This is called before Start()
     private void Awake()
@@ -62,8 +71,9 @@ public class ComponentsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug();
 
-        //DecreaseRate();
+        DecreaseRate();
 
         HealthBar.value = PlayerManager.Instance.PlayerCurrHealth;
         HungerBar.value = PlayerManager.Instance.PlayerCurrHunger;
@@ -72,18 +82,12 @@ public class ComponentsManager : MonoBehaviour
 
     void DecreaseRate()
     {
-        // day 1 == cd 10f
-        // day 2 == cd 
-        // day 3 == cd 
-
-        // 0f
         _rateCD -= Time.deltaTime;
 
-        float rate = _rateCD / (float)theDay.Day;
+        _decreaseRate = theDay.Day;
 
-        DecreaseRateText.text = "rate:" + rate;
-
-        if ( rate < 0)
+        // every 10 sec, all the components drop by the decrease rate
+        if (_rateCD < 0)
         {
             PlayerManager.Instance.PlayerCurrHealth -= _decreaseRate;
             PlayerManager.Instance.PlayerCurrHunger -= _decreaseRate;
@@ -91,7 +95,15 @@ public class ComponentsManager : MonoBehaviour
 
             _rateCD = _rateTimer;
         }
+    }
 
-        
+    void Debug()
+    {
+        DecreaseRateText.text = "rate: " + _decreaseRate;
+        CDRateTimerText.text = "CD: " + _rateCD;
+
+        HealthText.text = "" + PlayerManager.Instance.GetPlayerCurrHealth();
+        HungerText.text = "" + PlayerManager.Instance.GetPlayerCurrHunger();
+        ThirstText.text = "" + PlayerManager.Instance.GetPlayerCurrThirst();
     }
 }
