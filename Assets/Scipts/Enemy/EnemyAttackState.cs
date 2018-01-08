@@ -5,7 +5,12 @@ using UnityEngine;
 
 public class EnemyAttackState : EnemyStates
 {
+    // enemy
     private EnemyManager theEnemy;
+
+    // timer
+    private float _attackTimer = 1f;
+    private float _attackCD;
 
     public void Enter(EnemyManager enemy)
     {
@@ -51,5 +56,15 @@ public class EnemyAttackState : EnemyStates
     {
         // set to attack animation bool to true
         theEnemy.enemyAnim.SetBool("attack", true);
+
+        // start timer
+        _attackCD -= Time.deltaTime;
+
+        // after 2 sec resuming shooting
+        if (_attackCD < 0)
+        {
+            _attackCD = _attackTimer;
+            theEnemy.EnemyAttack();
+        }
     }
 }

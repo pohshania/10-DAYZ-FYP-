@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scipts\Mine\MineManager.cs" />
      <Compile Include="Assets\Scipts\Player\CharacterSelectManager.cs" />
      <Compile Include="Assets\Scipts\Player\PlayerManager.cs" />
+     <Compile Include="Assets\Scipts\Projectiles\EnemyProjectile.cs" />
      <Compile Include="Assets\Scipts\Test.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

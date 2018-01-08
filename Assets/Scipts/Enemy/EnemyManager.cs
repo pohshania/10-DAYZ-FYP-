@@ -28,6 +28,10 @@ public class EnemyManager : MonoBehaviour
     public float EdgeCheckRadius;
     public bool notAtEdge;
 
+    [Header("Projectile")]
+    public Transform EnemyFirePoint;
+    public GameObject EnemyProjectileGO;
+
     [HideInInspector]
     public Animator enemyAnim;
 
@@ -58,6 +62,8 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(PlayerManager.Instance.PlayerCurrHealth -= 10);
+
         _currState.Execute();
 
         LookAtPlayer();
@@ -116,6 +122,15 @@ public class EnemyManager : MonoBehaviour
             transform.localScale = new Vector3(_scaleX, _scaleY, 1);
             GetComponent<Rigidbody2D>().velocity = new Vector2(-MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
         }
+    }
+
+    public void EnemyAttack()
+    {
+
+        //EnemyProjectileGO.GetComponent<Rigidbody2D>().velocity = new Vector2(EnemyProjectileSpeed, EnemyProjectileGO.GetComponent<Rigidbody2D>().velocity.y);
+        //EnemyProjectileGO.GetComponent<Rigidbody2D>().angularVelocity = EnemyProjectileRotation;
+
+        Instantiate(EnemyProjectileGO, EnemyFirePoint.position, EnemyFirePoint.rotation);
     }
 
     void SetHealthBar(float health)

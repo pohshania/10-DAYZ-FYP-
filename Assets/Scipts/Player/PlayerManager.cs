@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour {
 
@@ -25,6 +26,9 @@ public class PlayerManager : MonoBehaviour {
     private float _scaleX;
     private float _scaleY;
     private float _scaleZ;
+    private float _posX;
+    private float _posY;
+    private float _posZ;
 
 
     [Header("Ground Check")]
@@ -37,6 +41,9 @@ public class PlayerManager : MonoBehaviour {
     [Header("Attack")]
     public int PlayerMeleeDamage;
     public GameObject MeleeAttackPos;
+
+    [Header("Cool Downs")]
+    public float ChangeSceneCD;
 
     // sprite animation
     private Animator _playerAnim;
@@ -62,6 +69,11 @@ public class PlayerManager : MonoBehaviour {
         // store player's x and y scale 
         _scaleX = transform.localScale.x;
         _scaleY = transform.localScale.y;
+
+        // store player's x and y and z pos 
+        _posX = transform.position.x;
+        _posY = transform.position.y;
+        _posZ = transform.position.z;
 
         // player animation
         _playerAnim = GetComponent<Animator>();
@@ -98,6 +110,11 @@ public class PlayerManager : MonoBehaviour {
         PlayerJump();
         // player melee attacking
         PlayerMelee();
+        // player die
+        PlayerDead();
+
+        // Debugging
+        AddHealth();
     }
 
     // Player walk
@@ -152,6 +169,40 @@ public class PlayerManager : MonoBehaviour {
         {
             _playerAnim.SetBool("JumpMelee", true);
             MeleeAttackPos.SetActive(true);  // toggle on melee attack pos
+        }
+    }
+
+    // Player dead
+    void PlayerDead()
+    {
+        if(PlayerCurrHealth <= 0)
+        {
+            Debug.Log("this ding dong xi kiao kiao alr");
+
+            _playerAnim.SetBool("Dead", true);
+
+            transform.position = new Vector3(transform.position.x, _posY - 0.2f, transform.position.z);
+
+            ChangeSceneCD -= Time.deltaTime;
+
+            if (ChangeSceneCD < 0)
+            {
+                // back to character select
+                SceneManager.LoadScene(0);
+                
+
+                Destroy(gameObject);
+            }
+            
+        }
+    }
+
+    // Add health
+    void AddHealth()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            PlayerCurrHealth += 20;
         }
     }
 

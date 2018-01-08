@@ -56,6 +56,7 @@ public class EnemyPatrolState : EnemyStates
         // after 10 sec of Patrolling change state to Idle
         if (_patrolTimer >= _patrolDuration)
         {
+            _patrolTimer = 0f;
             theEnemy.ChangeState(new EnemyIdleState());
         }
     }

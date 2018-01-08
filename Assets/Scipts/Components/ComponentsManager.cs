@@ -11,6 +11,17 @@ public class ComponentsManager : MonoBehaviour
     public Slider HungerBar;
     public Slider ThirstBar;
 
+    private int _decreaseRate = 5;
+
+    private float _rateTimer = 5f;
+    private float _rateCD;
+
+    private DayManager theDay;
+
+    // Debugging
+    [Header("Decrease rate")]
+    public Text DecreaseRateText;
+
     // This is called before Start()
     private void Awake()
     {
@@ -38,17 +49,49 @@ public class ComponentsManager : MonoBehaviour
         // thirst component
         ThirstBar.maxValue = PlayerManager.Instance.PlayerMaxThirst;
         ThirstBar.value = PlayerManager.Instance.PlayerCurrThirst;
-       
+
+        theDay = FindObjectOfType<DayManager>();
+
     }
 
     public void Init()
     {
-
+ 
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        //DecreaseRate();
+
+        HealthBar.value = PlayerManager.Instance.PlayerCurrHealth;
+        HungerBar.value = PlayerManager.Instance.PlayerCurrHunger;
+        ThirstBar.value = PlayerManager.Instance.PlayerCurrThirst;
+    }
+
+    void DecreaseRate()
+    {
+        // day 1 == cd 10f
+        // day 2 == cd 
+        // day 3 == cd 
+
+        // 0f
+        _rateCD -= Time.deltaTime;
+
+        float rate = _rateCD / (float)theDay.Day;
+
+        DecreaseRateText.text = "rate:" + rate;
+
+        if ( rate < 0)
+        {
+            PlayerManager.Instance.PlayerCurrHealth -= _decreaseRate;
+            PlayerManager.Instance.PlayerCurrHunger -= _decreaseRate;
+            PlayerManager.Instance.PlayerCurrThirst -= _decreaseRate;
+
+            _rateCD = _rateTimer;
+        }
+
         
     }
 }
