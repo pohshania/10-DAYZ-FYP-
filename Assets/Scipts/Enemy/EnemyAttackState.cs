@@ -22,8 +22,8 @@ public class EnemyAttackState : EnemyStates
     {
         Debug.Log("Enemy Attacking");
 
-        // if player in enemy range
-        if (theEnemy.Target != null) 
+        // if player in enemy range and still alive
+        if (theEnemy.Target != null && PlayerManager.Instance.IsDead == false) 
         {
             Attack();
         }

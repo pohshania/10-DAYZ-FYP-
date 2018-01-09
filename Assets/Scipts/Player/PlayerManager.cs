@@ -30,7 +30,6 @@ public class PlayerManager : MonoBehaviour {
     private float _posY;
     private float _posZ;
 
-
     [Header("Ground Check")]
     // player jump to check on ground
     public Transform GroundCheck;
@@ -44,6 +43,19 @@ public class PlayerManager : MonoBehaviour {
 
     [Header("Cool Downs")]
     public float ChangeSceneCD;
+    // player death
+    [HideInInspector]
+    public bool IsDead;
+
+    [Header("Knock Back")]
+    public float KnockBack;
+    public float KnockBackLength;
+    [HideInInspector]
+    public float KnockBackCount;
+    [HideInInspector]
+    public bool KnockFromRight; // check if enemy is on the right or left
+    private float KBTimer;
+    private float KBCD = 3f;
 
     // sprite animation
     private Animator _playerAnim;
@@ -82,6 +94,9 @@ public class PlayerManager : MonoBehaviour {
         PlayerCurrHealth = PlayerMaxHealth;
         PlayerCurrHunger = PlayerMaxHunger;
         PlayerCurrThirst = PlayerMaxThirst;
+
+        // player not dead
+        IsDead = false;
     }
 
     void FixedUpdate()
@@ -104,15 +119,20 @@ public class PlayerManager : MonoBehaviour {
             transform.localScale = new Vector3(-_scaleX, _scaleY, 1f);
         }
 
+        if (IsDead == true)
+            PlayerCurrHealth = 0;
+
         // player walking
         PlayerWalk();
         // player jumping
         PlayerJump();
         // player melee attacking
         PlayerMelee();
+        // player death
+        PlayerDeath();
+        // player knock back
+        PlayerKnockBack();
 
-        // player die
-        //PlayerDead();
 
         // Debugging
         AddHealth();
@@ -173,35 +193,54 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
-    // Player dead
-    void PlayerDead()
+    // Player death
+    void PlayerDeath()
     {
-        if(PlayerCurrHealth <= 0)
+        if (PlayerCurrHealth <= 0)
         {
-            Debug.Log("this ding dong xi kiao kiao alr");
+            //Debug.Log("this ding dong xi kiao kiao alr");
 
-            _playerAnim.SetBool("Dead", true);
+            IsDead = true;
 
-            transform.position = new Vector3(transform.position.x, _posY - 0.2f, transform.position.z);
+            _playerAnim.SetBool("Dead", IsDead);
 
             ChangeSceneCD -= Time.deltaTime;
 
             if (ChangeSceneCD < 0)
             {
                 // back to character select
-                SceneManager.LoadScene(0);
-                
-
+                SceneManager.LoadScene("02_CharacterSelection");
                 Destroy(gameObject);
             }
-            
+        }
+    }
+
+    // Player knock back
+    void PlayerKnockBack()
+    {
+        if (KnockBackCount <= 0)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(playerMoveVelocity, GetComponent<Rigidbody2D>().velocity.y);
+        }
+        else
+        {
+            if (KnockFromRight)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(-KnockBack, KnockBack);
+            }
+            if (!KnockFromRight)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(KnockBack, KnockBack);
+            }
+
+            KnockBackCount -= Time.deltaTime;
         }
     }
 
     // Add health
     void AddHealth()
     {
-        if(Input.GetKeyDown(KeyCode.R))
+        if(Input.GetKeyDown(KeyCode.R) && IsDead == false)
         {
             PlayerCurrHealth += 20;
         }

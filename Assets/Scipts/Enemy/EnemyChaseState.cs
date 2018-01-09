@@ -18,8 +18,8 @@ public class EnemyChaseState : EnemyStates
         Debug.Log("Enemy Chasing");
         //Chase();
 
-        // if enemy spotted player 
-        if (theEnemy.Target != null)
+        // if enemy spotted player and player still not dead
+        if (theEnemy.Target != null && PlayerManager.Instance.IsDead == false)
         {
             // enemy move
             theEnemy.EnemyMove();
@@ -34,7 +34,7 @@ public class EnemyChaseState : EnemyStates
                 theEnemy.ChangeState(new EnemyPatrolState());
             }
         }
-        else // when player go out of enemy range
+        else // when player go out of enemy range or dead
         {
             theEnemy.ChangeState(new EnemyIdleState());
         }

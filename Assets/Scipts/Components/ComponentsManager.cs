@@ -7,21 +7,23 @@ public class ComponentsManager : MonoBehaviour
 {
     public static ComponentsManager Instance { get; private set; }
 
+    [Header("Components sliders")]
     public Slider HealthBar;
     public Slider HungerBar;
     public Slider ThirstBar;
 
-    private int _decreaseRate = 5;
-
-    private float _rateTimer = 10f;
+    [Header("Decrease rate timer")]
+    public float _rateTimer;
     private float _rateCD;
+    private int _decreaseRate;
 
     private DayManager theDay;
+    //private PlayerManager player;
 
     // Debugging
     [Header("Decrease rate")]
     public Text DecreaseRateText;
-    [Header("CD timer")]
+    [Header("Timer CD")]
     public Text CDRateTimerText;
     [Header("Health")]
     public Text HealthText;
@@ -29,7 +31,6 @@ public class ComponentsManager : MonoBehaviour
     public Text HungerText;
     [Header("Thirst")]
     public Text ThirstText;
-
 
     // This is called before Start()
     private void Awake()

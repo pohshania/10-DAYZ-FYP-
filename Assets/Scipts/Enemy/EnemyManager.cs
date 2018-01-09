@@ -173,5 +173,20 @@ public class EnemyManager : MonoBehaviour
                 ChangeState(new EnemyDeathState());
             }
         }
+        
+        if(other.tag == "Player")
+        {
+            Debug.Log("Enemy touched player!");
+            // knock back player
+            PlayerManager.Instance.KnockBackCount = PlayerManager.Instance.KnockBackLength;
+            if(other.transform.position.x < transform.position.x)
+            {
+                PlayerManager.Instance.KnockFromRight = true;
+            }
+            else
+            {
+                PlayerManager.Instance.KnockFromRight = false;
+            }
+        }
     }
 }
