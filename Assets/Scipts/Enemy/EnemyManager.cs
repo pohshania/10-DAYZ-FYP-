@@ -179,7 +179,7 @@ public class EnemyManager : MonoBehaviour
             Debug.Log("Enemy touched player!");
             // knock back player
             PlayerManager.Instance.KnockBackCount = PlayerManager.Instance.KnockBackLength;
-            if(other.transform.position.x < transform.position.x)
+            if (other.transform.position.x < transform.position.x)
             {
                 PlayerManager.Instance.KnockFromRight = true;
             }

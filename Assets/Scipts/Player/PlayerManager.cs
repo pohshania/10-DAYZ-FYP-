@@ -54,8 +54,6 @@ public class PlayerManager : MonoBehaviour {
     public float KnockBackCount;
     [HideInInspector]
     public bool KnockFromRight; // check if enemy is on the right or left
-    private float KBTimer;
-    private float KBCD = 3f;
 
     // sprite animation
     private Animator _playerAnim;
@@ -154,7 +152,7 @@ public class PlayerManager : MonoBehaviour {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, PlayerJumpHeight);
-            //Debug.Log("jump!");
+            Debug.Log("jump!");
         }
 
         // jumping animation
