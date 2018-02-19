@@ -49,8 +49,12 @@ public class EnemyProjectile : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            Debug.Log("Player kenna shot ohnonos");
             PlayerManager.Instance.PlayerCurrHealth -= EnemyProjectileDamage;   
+        }
+
+        if(other.tag == "Ground")
+        {
+            Destroy(gameObject);
         }
     }
 }

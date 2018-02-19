@@ -86,12 +86,10 @@ public class EnemyManager : MonoBehaviour
 
             if (DirX < 0)
             {
-                Debug.Log("player on left side");
                 movingRight = false;
             }
             else if(DirX > 0)
             {
-                Debug.Log("player on right side");
                 movingRight = true;
             }
         }
@@ -146,9 +144,6 @@ public class EnemyManager : MonoBehaviour
         if (IsDead == true)
         {
             Destroy(gameObject);
-
-            Debug.Log("DESTROY THE ENEMY LAAAAA");
-
         }
     }
 
@@ -161,7 +156,6 @@ public class EnemyManager : MonoBehaviour
     {
         if (other.tag == "Melee")
         {
-            Debug.Log("You have hitted the enemy :< NUUUUUUUUUU T..T");
             EnemyCurrHealth -= PlayerManager.Instance.PlayerMeleeDamage;
 
             float health = EnemyCurrHealth / EnemyMaxHealth;
@@ -176,7 +170,6 @@ public class EnemyManager : MonoBehaviour
         
         if(other.tag == "Player")
         {
-            Debug.Log("Enemy touched player!");
             // knock back player
             PlayerManager.Instance.KnockBackCount = PlayerManager.Instance.KnockBackLength;
             if (other.transform.position.x < transform.position.x)

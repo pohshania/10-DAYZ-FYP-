@@ -139,55 +139,59 @@ public class PlayerManager : MonoBehaviour {
     // Player walk
     void PlayerWalk()
     {
-        playerMoveVelocity = PlayerMoveSpeed * Input.GetAxisRaw("Horizontal");
-        GetComponent<Rigidbody2D>().velocity = new Vector2(playerMoveVelocity, GetComponent<Rigidbody2D>().velocity.y);
-        // walking animation
-        _playerAnim.SetFloat("Speed", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
+        if(!IsDead)
+        {
+            playerMoveVelocity = PlayerMoveSpeed * Input.GetAxisRaw("Horizontal");
+            GetComponent<Rigidbody2D>().velocity = new Vector2(playerMoveVelocity, GetComponent<Rigidbody2D>().velocity.y);
+            // walking animation
+            _playerAnim.SetFloat("Speed", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
+        }
     }
 
     // Player jump
     void PlayerJump()
     {
-        // player jumping
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if(!IsDead)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, PlayerJumpHeight);
-            Debug.Log("jump!");
+            // player jumping
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, PlayerJumpHeight);
+            }
+
+            // jumping animation
+            // the jump anim boolean is set to the same value as the isGrounded value in here
+            _playerAnim.SetBool("Grounded", isGrounded);
         }
-
-        // jumping animation
-        // the jump anim boolean is set to the same value as the isGrounded value in here
-        _playerAnim.SetBool("Grounded", isGrounded);
-
-        // print out if player is on ground
-        // Debug.Log(isGrounded);
     }
 
     // Player melee
     void PlayerMelee()
     {
-        // player attacking
-        if (_playerAnim.GetBool("Melee") == true)
+        if(!IsDead)
         {
-            _playerAnim.SetBool("Melee", false);
-            // Debug.Log("ATTTTTTTTACK finish");
-        }
-        else if(_playerAnim.GetBool("Melee") == false && isGrounded == true)
-        {
-            MeleeAttackPos.SetActive(false);  // toggle off melee attack
-            _playerAnim.SetBool("JumpMelee", false);
-        }
+            // player attacking
+            if (_playerAnim.GetBool("Melee") == true)
+            {
+                _playerAnim.SetBool("Melee", false);
+            }
+            else if (_playerAnim.GetBool("Melee") == false && isGrounded == true)
+            {
+                MeleeAttackPos.SetActive(false);  // toggle off melee attack
+                _playerAnim.SetBool("JumpMelee", false);
+            }
 
-        // melee attack when standing still
-        if (Input.GetButtonDown("Fire1") && playerMoveVelocity == 0 && isGrounded == true)  //if(Input.GetKeyDown(KeyCode.X))
-        {
-            _playerAnim.SetBool("Melee", true);
-            MeleeAttackPos.SetActive(true);  // toggle on melee attack pos
-        }
-        else if(Input.GetButtonDown("Fire1") && isGrounded == false) // jump melee attack animation
-        {
-            _playerAnim.SetBool("JumpMelee", true);
-            MeleeAttackPos.SetActive(true);  // toggle on melee attack pos
+            // melee attack when standing still
+            if (Input.GetButtonDown("Fire1") && playerMoveVelocity == 0 && isGrounded == true)  //if(Input.GetKeyDown(KeyCode.X))
+            {
+                _playerAnim.SetBool("Melee", true);
+                MeleeAttackPos.SetActive(true);  // toggle on melee attack pos
+            }
+            else if (Input.GetButtonDown("Fire1") && isGrounded == false) // jump melee attack animation
+            {
+                _playerAnim.SetBool("JumpMelee", true);
+                MeleeAttackPos.SetActive(true);  // toggle on melee attack pos
+            }
         }
     }
 
@@ -216,29 +220,33 @@ public class PlayerManager : MonoBehaviour {
     // Player knock back
     void PlayerKnockBack()
     {
-        if (KnockBackCount <= 0)
+        if(!IsDead)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(playerMoveVelocity, GetComponent<Rigidbody2D>().velocity.y);
-        }
-        else
-        {
-            if (KnockFromRight)
+            if (KnockBackCount <= 0)
             {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(-KnockBack, KnockBack);
+                GetComponent<Rigidbody2D>().velocity = new Vector2(playerMoveVelocity, GetComponent<Rigidbody2D>().velocity.y);
             }
-            if (!KnockFromRight)
+            else
             {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(KnockBack, KnockBack);
-            }
+                if (KnockFromRight)
+                {
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(-KnockBack, KnockBack);
+                }
+                if (!KnockFromRight)
+                {
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(KnockBack, KnockBack);
+                }
 
-            KnockBackCount -= Time.deltaTime;
+                KnockBackCount -= Time.deltaTime;
+            }
         }
+ 
     }
 
     // Add health
     void AddHealth()
     {
-        if(Input.GetKeyDown(KeyCode.R) && IsDead == false)
+        if(Input.GetKeyDown(KeyCode.R) && !IsDead)
         {
             PlayerCurrHealth += 20;
         }
