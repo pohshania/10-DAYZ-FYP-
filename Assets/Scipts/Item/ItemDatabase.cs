@@ -15,5 +15,4 @@ public class ItemDatabase : ScriptableObject
     public Sprite ItemSprite;
     public string ItemName;
     public string ItemDescription;
-    
 }

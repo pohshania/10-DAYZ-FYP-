@@ -1,16 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemManager : MonoBehaviour
 {
-    public ItemDatabase ItemData;
+    public ItemDatabase Item;
+    public Text ItemDescription;
+    public float ItemScale;
+    private Vector3 _scale;
 
 	// Use this for initialization
 	void Start ()
     {
-	    	
-	}
+        // set item's sprite
+        GetComponent<SpriteRenderer>().sprite = Item.ItemSprite;
+        // set item's scale
+        transform.localScale = new Vector3(ItemScale, ItemScale, 1f);
+        // set item's description
+        //ItemDescription.GetComponent<Text>().text = Item.ItemDescription;
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -22,7 +31,7 @@ public class ItemManager : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            InventoryManager.Instance.AddItem(ItemData);
+            InventoryManager.Instance.AddItem(Item);
             Destroy(gameObject);
         }
     }
