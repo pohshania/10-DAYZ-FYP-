@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour {
 
+    // Singleton
     public static PlayerManager Instance { get; private set; }
 
     // Player's info

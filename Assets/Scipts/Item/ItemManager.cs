@@ -9,6 +9,7 @@ public class ItemManager : MonoBehaviour
     public Text ItemDescription;
     public float ItemScale;
     private Vector3 _scale;
+    private bool _itemLooted;
 
 	// Use this for initialization
 	void Start ()
@@ -31,8 +32,12 @@ public class ItemManager : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            InventoryManager.Instance.AddItem(Item);
-            Destroy(gameObject);
+            _itemLooted = InventoryManager.Instance.AddItem(Item);
+
+            if(_itemLooted)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
