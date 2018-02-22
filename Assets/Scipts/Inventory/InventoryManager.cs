@@ -109,7 +109,29 @@ public class InventoryManager : MonoBehaviour
 
     private void DisplayInventoryUI2()
     {
+        
+        // instantiate slots list
+        AllInventorySlots = new List<GameObject>();
 
+ 
+        for (int i = 0; i < 15; i++)
+        {
+            GameObject NewSlot = (GameObject)Instantiate(SlotPrefab);
+      
+            NewSlot.transform.SetParent(this.transform);
+
+            NewSlot.transform.localScale = new Vector3(SlotSize,SlotSize);
+
+            float posX = (this.transform.position.x) + (((i - 1) + 1) * 95);
+            //float posX = (this.transform.position.x) + (((i - 1) + 0) * 95);
+
+            // slots' position
+            NewSlot.transform.localPosition = new Vector3(posX, this.transform.position.y);
+
+            AllInventorySlots.Add(NewSlot);
+        }
+
+        Debug.Log("Inventory displayed!");
     }
 
     public bool AddItem(ItemDatabase item)
