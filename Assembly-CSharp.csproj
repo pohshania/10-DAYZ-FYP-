@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{4C363F3F-15D1-DCA8-F7C9-3AF0D0F4CB5F}</ProjectGuid>
+    <ProjectGuid>{9FFE4A25-2F7A-8E42-0269-025026D61644}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scipts\Enemy\EnemyRange.cs" />
      <Compile Include="Assets\Scipts\Enemy\EnemyStates.cs" />
      <Compile Include="Assets\Scipts\Inventory\InventoryManager.cs" />
+     <Compile Include="Assets\Scipts\Inventory\SlotManager.cs" />
      <Compile Include="Assets\Scipts\Item\ItemDatabase.cs" />
      <Compile Include="Assets\Scipts\Item\ItemManager.cs" />
      <Compile Include="Assets\Scipts\Item\LootManager.cs" />

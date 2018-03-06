@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// This class handles the gameobject items
 public class ItemManager : MonoBehaviour
 {
+    [Header("Item info")]
     public ItemDatabase Item;
     public Text ItemDescription;
     public float ItemScale;
-    private Vector3 _scale;
-    private bool _itemLooted;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         // set item's sprite
         GetComponent<SpriteRenderer>().sprite = Item.ItemSprite;
@@ -28,16 +28,12 @@ public class ItemManager : MonoBehaviour
 		
 	}
 
+    // Collision
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "Player")
+        if (other.tag == "Player")
         {
-            _itemLooted = InventoryManager.Instance.AddItem(Item);
-
-            if(_itemLooted)
-            {
-                Destroy(gameObject);
-            }
+            InventoryManager.Instance.AddItemToSlot(Item);
         }
     }
 }

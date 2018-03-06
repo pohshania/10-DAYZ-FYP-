@@ -266,4 +266,13 @@ public class PlayerManager : MonoBehaviour {
     {
         return PlayerCurrThirst;
     }
+
+    //// Collision
+    //void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if (other.tag == "Item")
+    //    {
+    //        InventoryManager.Instance.AddItem(other.GetComponent<ItemDatabase);
+    //    }
+    //}
 }
